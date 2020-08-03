@@ -175,3 +175,19 @@ variable "disable_legacy_metadata_endpoints" {
   description = "Disable the /0.1/ and /v1beta1/ metadata server endpoints on the node. Changing this value will cause all node pools to be recreated."
   default     = true
 }
+variable "gke_cluster_pod_address_name" {
+  type        = string
+  description = "Pod address name"
+}
+# variable "gke_cluster_pod_address_range" {
+#   type        = string
+#   description = "Pod address range"
+# }
+variable "gke_cluster_service_address_name" {
+  type        = string
+  description = "Service address name"
+}
+# variable "gke_cluster_service_address_range" {
+#   type        = string
+#   description = "Service address range"
+# }
