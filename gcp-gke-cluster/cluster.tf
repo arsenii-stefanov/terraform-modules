@@ -21,6 +21,7 @@ resource "google_container_cluster" "primary" {
   # NETWORKING
   network    = var.gke_cluster_vpc_network_name
   subnetwork = var.gke_cluster_vpc_subnetwork_name
+  #  cluster_ipv4_cidr = var.gke_cluster_pod_address_range
 
   private_cluster_config {
     enable_private_nodes    = var.gke_cluster_enable_private_nodes
@@ -30,7 +31,12 @@ resource "google_container_cluster" "primary" {
 
   master_authorized_networks_config {}
 
-  ip_allocation_policy {}
+  ip_allocation_policy {
+    cluster_secondary_range_name = var.gke_cluster_pod_address_name
+    # cluster_ipv4_cidr_block       = var.gke_cluster_pod_address_range
+    services_secondary_range_name = var.gke_cluster_service_address_name
+    # services_ipv4_cidr_block      = var.gke_cluster_service_address_range
+  }
 
   # ADDONS
   addons_config {
